@@ -1,0 +1,42 @@
+{
+  "title": {
+    "general": "General info",
+    "equipment-info": "Equipment Info"
+  },
+  "languages": {
+    "en": "English",
+    "uk": "Українська"
+  },
+  "something-went-wrong": "Something went wrong",
+  "message-is-required": "Message is required",
+  "phone-must-be-valid": "Phone must be valid",
+  "phone-is-required": "Phone is required",
+  "name-is-required": "Name is required",
+  "add-files": "Add files",
+  "submit": "Submit",
+  "message": "Message",
+  "position": "Position",
+  "phone": "Phone",
+  "name": "Name",
+  "support-request": "Support request",
+  "content": "Content",
+  "status": "Status",
+  "created-at": "Created at",
+  "number": "Number",
+  "all-service-requests": "All service requests",
+  "community": "Community",
+  "get-started": "Get Started",
+  "components": "Components",
+  "vuetify": "Vuetify",
+  "welcome-to": "Welcome to",
+  "url": "Url",
+  "address": "Address",
+  "service-contacts": "Service Contacts",
+  "owner-name": "Owner Name",
+  "manufacturer-name": "Manufacturer Name",
+  "factory-number": "Factory Number",
+  "install-date": "Install Date",
+  "model-name": "Model Name",
+  "type": "Type",
+  "included": "Included"
+}

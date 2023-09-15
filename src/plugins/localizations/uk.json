@@ -1,0 +1,41 @@
+{
+  "title": {
+    "general": "Загальна інформація",
+    "equipment-info": "Інформація про обладнання"
+  },
+  "languages": {
+    "en": "English",
+    "uk": "Українська"
+  },
+  "all-service-requests": "Всі запити на обслуговування",
+  "included": "В комплекті",
+  "type": "Тип",
+  "name": "Ім'я",
+  "model-name": "Назва моделі",
+  "install-date": "Дата встановлення",
+  "factory-number": "Заводський номер",
+  "manufacturer-name": "Назва виробника",
+  "owner-name": "Ім'я власника",
+  "service-contacts": "Контакти служби",
+  "phone": "Телефон",
+  "address": "Адреса",
+  "url": "Url",
+  "vuetify": "Vuetify",
+  "components": "компоненти",
+  "get-started": "Почати",
+  "community": "Спільнота",
+  "created-at": "Створена",
+  "number": "Номер",
+  "status": "Статус",
+  "content": "Зміст",
+  "position": "Позиція",
+  "message": "Повідомлення",
+  "submit": "Надіслати",
+  "add-files": "Додати файли",
+  "name-is-required": "Необхідно вказати ім'я",
+  "phone-is-required": "Телефон обов'язковий",
+  "phone-must-be-valid": "Телефон має бути дійсним",
+  "message-is-required": "Необхідне повідомлення",
+  "something-went-wrong": "Щось пішло не так",
+  "support-request": "Запит у службу підтримки"
+}
