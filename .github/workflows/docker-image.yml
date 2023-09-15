@@ -15,6 +15,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build and Push the Docker image
       run: |
-        docker login --Username MbIT9I --Password ${{ secrets.GITHUB_TOKEN }} ghcr.io 
+        docker login --username MbIT9I --password ${{ secrets.GITHUB_TOKEN }} ghcr.io 
         docker build . --file Dockerfile --tag ghcr.io/mbit9i/eam_app:$(date +%s)
         docker push ghcr.io/mbit9i/eam_app:$(date +%s)
