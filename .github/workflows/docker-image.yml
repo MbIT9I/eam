@@ -11,8 +11,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag harwind/eam:$(date +%s)
+      run: docker build . --file Dockerfile --tag ghcr.io/harwind/eam:$(date +%s)
+    - name: Push the Docker image to the repository
+      run: docker push ghcr.io/harwind/eam:$(date +%s)
