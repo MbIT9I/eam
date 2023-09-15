@@ -16,5 +16,5 @@ jobs:
     - name: Build and Push the Docker image
       run: |
         docker login --username MbIT9I --password ${{ secrets.GITHUB_TOKEN }} ghcr.io 
-        docker build . --file Dockerfile --tag ghcr.io/mbit9i/eam_app:$(date +%s)
-        docker push ghcr.io/mbit9i/eam_app:$(date +%s)
+        docker build . --file Dockerfile --tag ghcr.io/mbit9i/eam_app:latest
+        docker push ghcr.io/mbit9i/eam_app:latest
