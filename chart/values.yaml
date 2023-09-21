@@ -1,0 +1,20 @@
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 100m
+  limits:
+    memory: 256Mi
+    cpu: 100m
+ingress:
+  class: ""
+  host: ~
+  rewriteTarget: eam-web-new/$2
+image:
+  repository: ghcr.io/mbit9i/eam_app
+  tag: latest
+  pullPolicy: Always
+  pullSecret: github-reader
+service:
+  replicas: 1
+  internalPort: 80 
+  externalPort: 80
