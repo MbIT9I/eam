@@ -37,5 +37,17 @@
   "phone-must-be-valid": "Телефон має бути дійсним",
   "message-is-required": "Необхідне повідомлення",
   "something-went-wrong": "Щось пішло не так",
-  "support-request": "Запит у службу підтримки"
+  "support-request": "Запит у службу підтримки",
+  "types": {
+    "CREATION": "Створена",
+    "DISPATCHER": "Диспетчер",
+    "RESPONSIBLE": "Відповідальний",
+    "PREPARATION": "Підготовка",
+    "EXECUTION": "Виконання",
+    "DONE": "Виконано",
+    "CANCELED": "Скасовано",
+    "ARCHIVE": "Архів"
+  },
+  "additionalInfo": "Додаткова інформація",
+  "closeDialog": "Закрити"
 }

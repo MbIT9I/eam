@@ -16,6 +16,31 @@
             :disabled="true"
             ></v-checkbox>
         </template>
+        <template v-slot:item.description="{ item }">
+          <v-dialog width="500">
+            <template v-slot:activator="{ props }">
+              <v-btn  v-if="item.selectable.description" v-bind="props" icon="mdi-information"> </v-btn>
+            </template>
+
+          <template v-slot:default="{ isActive }">
+            <v-card :title="$t('additionalInfo')">
+              <v-card-text>
+                {{ item.selectable.description }}
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+
+                <v-btn
+                  :text="$t('closeDialog')"
+                  @click="isActive.value = false"
+                ></v-btn>
+              </v-card-actions>
+            </v-card>
+          </template>
+        </v-dialog>
+
+        </template>
         </v-data-table>
     </v-card-actions>
 </v-card>
@@ -47,6 +72,7 @@ export default {
             { title: this.$t('included'), key: 'isInstalled' },
             { title: this.$t('type'), key: 'typeName' },
             { title: this.$t('name'), key: 'name' },
+            { title: "", key: 'description' },
         ]
     }
   }

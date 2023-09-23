@@ -9,11 +9,10 @@
             <v-data-table class="w-100"
                 :headers="headers"
                 :items="serviceApplications"
-                key="id"
-            >
+                key="id">
                 <template v-slot:item.status="{ item }">
-                    <v-chip :color="item.selectable.status === 'CREATION' ? 'green' : 'red'">
-                        {{ item.selectable.status }}
+                    <v-chip :color="getApplicationStatusColor(item.selectable.status)">
+                        {{ $t("types."+item.selectable.status) }}
                     </v-chip>
                 </template>
                 <template v-slot:item.id="{ item }">
@@ -56,6 +55,22 @@ export default {
         { title: this.$t('name'), key: 'declarer' },
         { title: this.$t('content'), key: 'content' },
       ]
+    }
+  },
+  methods: {
+    getApplicationStatusColor (status) {
+      console.log(status)
+      const color = {
+        CREATION:    "#FF9B3B",
+        DISPATCHER:  "#2196F3",
+        RESPONSIBLE: "#4CAF50",
+        PREPARATION: "#F44336",
+        EXECUTION:   "#FF9800",
+        DONE:        "#8BC34A",
+        CANCELED:    "#F44336",
+        ARCHIVE:     "#9E9E9E"
+      }
+      return color[status] ?? "#9E9E9E"
     }
   }
 }

@@ -43,15 +43,37 @@
                         <v-col cols="6">
                             <v-btn
                                 color="primary"
+                                variant="tonal"
                                 @click="submit"
                             >{{ $t('submit') }}</v-btn>
                         </v-col>
                         <v-col cols="6">
                             <v-btn
-                                color="secondary"
+                                color="secondary-darken-1"
                                 @click="selectFilesAndPost"
                             >{{ $t('add-files') }}</v-btn>
                         </v-col>
+                        <v-col cols="12">
+                            <v-list>
+                                <v-list-item v-for="file in uploadedFiles" :key="file.id">
+                                    <v-row>
+                                        <v-col cols="9">
+                                            <!-- <v-list-item-content> -->
+                                                <v-list-item-title>{{ file.name }}</v-list-item-title>
+                                            <!-- </v-list-item-content> -->
+                                        </v-col>
+                                        <v-col cols="3">
+                                            <v-list-item-action>
+                                                <v-btn icon @click="removeFile(file)">
+                                                    <v-icon color="red">mdi-delete</v-icon>
+                                                </v-btn>
+                                            </v-list-item-action>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item>
+                            </v-list>
+                        </v-col>
+
                     </v-row>
                 </v-form>
             </v-card-actions>
@@ -152,6 +174,9 @@ export default {
                 }
                 finishLoading()
             }
+        },
+        removeFile(file) {
+            this.uploadedFiles = this.uploadedFiles.filter(x => x.id != file.id)
         }
     }
 }

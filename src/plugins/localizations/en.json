@@ -38,5 +38,17 @@
   "install-date": "Install Date",
   "model-name": "Model Name",
   "type": "Type",
-  "included": "Included"
+  "included": "Included",
+  "types": {
+    "CREATION": "Created",
+    "DISPATCHER": "Dispatcher",
+    "RESPONSIBLE": "Responsible",
+    "PREPARATION": "Preparation",
+    "EXECUTION": "Execution",
+    "DONE": "Done",
+    "CANCELED": "Canceled",
+    "ARCHIVE": "Archive"
+  },
+  "additionalInfo": "Additional info",
+  "closeDialog": "Close"
 }
