@@ -19,10 +19,16 @@ export default createVuetify({
     themes: {
       light: {
         colors: {
-          primary: '#1867C0',
-          secondary: '#5CBBF6',
+          // primary: '#1867C0',
+          // secondary: '#5CBBF6',
+          'secondary-darken-1': '#005a70'
         },
       },
+      dark: {
+        colors: {
+          'secondary-darken-1': '#005a70'
+        }
+      }
     },
   },
   components: {

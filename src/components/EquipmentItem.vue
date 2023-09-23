@@ -4,10 +4,17 @@
     class="d-block d-md-flex"
   >
     <v-sheet class="w-100 w-md-50 d-flex justify-center align-center" >
-      <v-carousel continuous cycle :show-arrows="false">
+      <v-carousel v-if="equipment?.images?.length" continuous cycle :show-arrows="false">
         <v-carousel-item v-for="(img, i) in equipment?.images" :key="i">
           <div class="d-flex fill-height justify-center align-center">
             <v-img :src="`https://erp.harwind.com.ua/ws/GetFile.ashx?file=${img}`" max-width="500" />
+          </div>
+        </v-carousel-item>
+      </v-carousel>
+      <v-carousel v-else continuous cycle :show-arrows="false">
+        <v-carousel-item>
+          <div class="d-flex fill-height justify-center align-center">
+            <v-img src="@/assets/default-image.png" max-width="500" />
           </div>
         </v-carousel-item>
       </v-carousel>
@@ -16,7 +23,7 @@
       <v-sheet class="pt-5">
         <v-list  lines="one">
           <v-list-subheader backgroundcolor="primary">
-            {{ $t('title.general') }}
+            <p class="text-white"> {{ $t('title.general') }} </p>
           </v-list-subheader>
           <v-list-item :title="equipment?.name">
             <v-list-item-subtitle  v-if="!!equipment?.description">
@@ -28,7 +35,7 @@
       <v-sheet class="pt-5">
         <v-list  lines="one">
           <v-list-subheader backgroundcolor="primary">
-            {{ $t('title.equipment-info') }}
+            <p class="text-white"> {{ $t('title.equipment-info') }} </p>
           </v-list-subheader>
           <v-list-item :title="$t('type')">
             <v-list-item-subtitle>
@@ -71,7 +78,7 @@
       <v-sheet class="py-5">
         <v-list>
           <v-list-subheader>
-            {{ $t('service-contacts') }}
+            <p class="text-white"> {{ $t('service-contacts') }} </p>
           </v-list-subheader>
           <v-list-item :title="$t('name')">
             <v-list-item-subtitle>
@@ -137,7 +144,12 @@ export default {
       serviceDepartmentInfo: {},
       equipment: {}
     }
-  }
+  },
+  computed: {
+    async missingFileImg () {
+      return await import('@/assets/missing-file.png')
+    }
+  },
 }
 </script>
 

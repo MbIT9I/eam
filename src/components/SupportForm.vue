@@ -1,7 +1,7 @@
 <template>
         <v-card class="mt-5">
             <v-card-title class="pa-0 ma-0">
-                <p class="text-h5 text--primary pa-2">
+                <p class="text-h5 text-white pa-2">
                     {{ $t('support-request') }}
                 </p>
             </v-card-title>
