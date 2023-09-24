@@ -11,6 +11,6 @@
     const route = useRoute()
 
     function getUrl () {
-        return  document.location.origin + '/eam-web' + route.path
+        return  document.location.origin + '/eam-web-old' + route.path
     }
 </script>
