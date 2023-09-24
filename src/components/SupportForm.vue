@@ -11,6 +11,7 @@
                         <v-col cols="12" md="4">
                             <v-text-field ref="name"
                                 v-model="name" aria-required="true"
+                                :ref="name"
                                 :rules="nameRules"
                                 :label="$t('name')"
                                 required
@@ -19,14 +20,19 @@
                         <v-col cols="12" md="4">
                             <v-text-field ref="phone"
                                 v-model="phone"
+                                :ref="phone"
                                 :rules="phoneRules"
                                 :label="$t('phone')"
+                                mask="+## ### ### ## ##"
+                                prefix="+38"
+                                type="tel" id="tel"
                                 required
                             ></v-text-field>
                         </v-col>
                         <v-col cols="12" md="4">
                             <v-text-field ref="position"
                                 v-model="position"
+                                :ref="position"
                                 :rules="positionRules"
                                 :label="$t('position')"
                                 required
@@ -35,6 +41,7 @@
                         <v-col cols="12">
                             <v-textarea ref="message"
                                 v-model="message"
+                                :ref="message"
                                 :rules="messageRules"
                                 :label="$t('message')"
                                 required
@@ -99,6 +106,7 @@ export default {
             phone: '',
             phoneRules: [
                 v => !!v || this.$t('phone-is-required'),
+                v => v.length == 10 || this.$t('phone-must-be-10-digits'),
                 v => /^\+?[0-9]{10,}$/.test(v) || this.$t('phone-must-be-valid'),
             ],
             position: '',
@@ -114,9 +122,20 @@ export default {
     },
     methods: {
         async submit() {
-            let requestId = await this.$apollo.mutate({
+            if (!this.$refs.name.validate() || !this.$refs.phone.validate() || !this.$refs.message.validate()) {
+                return
+            }
+
+            let that = this
+            this.loading = true
+            var finishLoading = function() {
+                that.loading = false
+                console.log(that.uploadedFiles)
+            }
+
+            let requestId = (await this.$apollo.mutate({
                 // Query
-                mutation: gql`mutation serviceRequest ($args: CreateWorkRequestParams) {_eamservicemut {addServiceRequest(args: $args)}}`,
+                mutation: gql`mutation addServiceRequest ($args: CreateWorkRequestParams) {_eamservicemut { addServiceRequest(args: $args)}}`,
                 // Parameters
                 variables: {
                     args: {
@@ -126,11 +145,33 @@ export default {
                         position: this.position,
                         responsible: this.name
                     }
-                },
-                update: data => data._eamservicemut.addServiceRequest,
-            })
+                }
+            })).data._eamservicemut.addServiceRequest
 
-            console.log(requestId)
+            this.uploadedFiles.forEach(file => {
+                this.$apolloProvider.clients.webCalcClient.query({
+                    // Query
+                    query: gql`query addAttachmentCalculate ($code: String!, $args: String) { commonWebService { runCalc(code: $code, args: $args) } }`,
+                    // Parameters
+                    variables: {
+                        code: "ADDATTACHMENT",
+                        args: JSON.stringify({
+                            table: "RZA", keyvalue: `${requestId}`.padStart(7), filename: file.name, filepath: file.id, type: ""
+                        })
+                    },
+                    update: data => data.commonWebService.runCalc,
+                })
+            });
+
+            finishLoading();
+            clearFields();
+        },
+        clearFields() {
+            this.name = ''
+            this.phone = ''
+            this.position = ''
+            this.message = ''
+            this.uploadedFiles = []
         },
         selectFilesAndPost() {
             let that = this

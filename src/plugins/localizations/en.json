@@ -49,6 +49,20 @@
     "CANCELED": "Canceled",
     "ARCHIVE": "Archive"
   },
+  "type-descriprions": {
+    "CREATION": "Status changed to 'Created'",
+    "DISPATCHER": "Status changed to 'Dispatcher'",
+    "RESPONSIBLE": "Status changed to 'Responsible'",
+    "PREPARATION": "Status changed to 'Preparation'",
+    "EXECUTION": "Status changed to 'Execution'",
+    "DONE": "Status changed to 'Done'",
+    "CANCELED": "Status changed to 'Canceled'",
+    "ARCHIVE": "Status changed to 'Archive'"
+  },
   "additionalInfo": "Additional info",
-  "closeDialog": "Close"
+  "closeDialog": "Close",
+  "phone-must-be-10-digits": "Incorret phome number",
+  "application-history": "Application history",
+  "date": "Date",
+  "event": "Event"
 }
