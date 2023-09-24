@@ -144,12 +144,7 @@ export default {
       serviceDepartmentInfo: {},
       equipment: {}
     }
-  },
-  computed: {
-    async missingFileImg () {
-      return await import('@/assets/missing-file.png')
-    }
-  },
+  }
 }
 </script>
 
