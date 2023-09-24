@@ -26,7 +26,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory("/eam-web/"),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
 

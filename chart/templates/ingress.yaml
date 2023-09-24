@@ -32,7 +32,7 @@ spec:
   - http:
       paths:
       - pathType: ImplementationSpecific
-        path: /{{ .Values.ingress.rewriteTarget }}(/|$)(.*)
+        path: {{ .Values.ingress.path }}
         backend:
           service:
             name: {{ .Release.Name }}-application
