@@ -33,7 +33,7 @@ jobs:
       run: |
         docker login --username MbIT9I --password ${{ secrets.GHCR_TOKEN }} ghcr.io 
         docker build . --file Dockerfile --tag ghcr.io/mbit9i/eam_app:1.0.${{ github.run_id }}
-        docker push ghcr.io/mbit9i/eam_app:latest
+        docker push ghcr.io/mbit9i/eam_app:${{ github.run_id }}
 
   deploy:
 
