@@ -10,7 +10,8 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineConfig({
   plugins: [
     vue({ 
-      template: { transformAssetUrls }
+      template: { transformAssetUrls },
+      reactivityTransform: true
     }),
     // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
     vuetify({
@@ -38,4 +39,6 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  // by env
+  base: process.env.NODE_ENV === 'production' ? 'eam-web-new/' : '/'
 })
