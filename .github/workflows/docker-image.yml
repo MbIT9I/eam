@@ -43,8 +43,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: update minor appversion value with buildId in Chart.yaml
       run: |
-        sed -i "" "s/\(appVersion: \)[0-9.]*/\11.0.${{ github.run_id }}/g" ./chart/Chart.yaml 
-        cat ./chart/Chart.yaml
+        (Get-Content -Path ./chart/Chart.yaml) | ForEach-Object { $_ -replace '^(appVersion:\s*)[0-9.]*', "`$1'11.0.${env:GITHUB_RUN_ID}'" } | Set-Content -Path ./chart/Chart.yaml
+        Get-Content -Path ./chart/Chart.yaml
     - name: 'Deploy'
       uses: 'deliverybot/helm@v1'
       with:
