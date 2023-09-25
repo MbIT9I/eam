@@ -12,8 +12,16 @@ const routes = [
         component: () => import('@/views/Home.vue'),
       },
       {
+        path: '/:equipmentid',
+        // redirect to /equipment-data/:equipmentid
+        redirect: to => {
+          return { path: `/equipment-data/${to.params.equipmentid}` }
+        }
+
+      },
+      {
         path: '/equipment-data/:equipmentid',
-        name: 'Equipments',
+        name: 'Equipment',
         component: () => import(/* webpackChunkName: "home" */ '@/views/Equipments.vue'),
       },
       {
