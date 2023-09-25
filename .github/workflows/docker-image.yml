@@ -28,6 +28,6 @@ jobs:
     - name: Deploy
       uses: WyriHaximus/github-action-helm3@v3
       with:
-        exec: helm upgrade APP_NAME ./.helm/app/ --install --wait --atomic --namespace=APP_NAMESPACE --values=./.helm/app/values.yaml
+        exec: helm upgrade eam-web-new ./chart --install -f ./chart/values.yaml -n default --atomic --wait
         kubeconfig: '${{ secrets.KUBE_CONFIG_DATA }}'
         overrule_existing_kubeconfig: "true"
