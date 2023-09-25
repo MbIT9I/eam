@@ -8,8 +8,8 @@ resources:
 ingress:
   class: ""
   host: ~
-  path: /eam-web(/|$)(.*)
-  rewriteTarget: /eam-web/$2
+  path: /eam-web-new(/|$)(.*)
+  rewriteTarget: /$2
 image:
   repository: ghcr.io/mbit9i/eam_app
   tag: latest
