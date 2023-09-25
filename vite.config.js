@@ -40,5 +40,5 @@ export default defineConfig({
     port: 3000,
   },
   // by env
-  base: process.env.NODE_ENV === 'production' ? 'eam-web-new/' : '/'
+  base: process.env.NODE_ENV === 'production' ? 'eam-web/' : '/'
 })
