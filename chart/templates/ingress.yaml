@@ -32,7 +32,7 @@ spec:
   - http:
       paths:
       - pathType: ImplementationSpecific
-        path: {{ .Values.ingress.path }}
+        path: /eam-web-new(/|$)(.*)
         backend:
           service:
             name: {{ .Release.Name }}-application

@@ -26,7 +26,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory("/eam-web/"),
+  history: createWebHistory("/eam-web-new/"),
   routes,
 })
 
