@@ -8,6 +8,22 @@ on:
 
 jobs:
 
+  # prepere:
+
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: update minor appversion value with buildId in Chart.yaml
+  #     run: |
+  #       sed -i "" "s/\(appVersion: \)[0-9.]*/\11.0.${{ github.run_id }}/g" ./chart/Chart.yaml 
+  #       cat ./chart/Chart.yaml
+  #   - name: write ./chart/Chart.yaml file to artifact
+  #     uses: actions/upload-artifact@v2
+  #     with:
+  #       name: Chart.yaml
+  #       path: ./chart/Chart.yaml
+
+
   build:
 
     runs-on: ubuntu-latest
@@ -16,7 +32,7 @@ jobs:
     - name: Build and Push the Docker image
       run: |
         docker login --username MbIT9I --password ${{ secrets.GHCR_TOKEN }} ghcr.io 
-        docker build . --file Dockerfile --tag ghcr.io/mbit9i/eam_app:latest
+        docker build . --file Dockerfile --tag ghcr.io/mbit9i/eam_app:1.0.${{ github.run_id }}
         docker push ghcr.io/mbit9i/eam_app:latest
 
   deploy:
@@ -25,9 +41,22 @@ jobs:
     needs: build
     steps:
     - uses: actions/checkout@v3
-    - name: Deploy
-      uses: WyriHaximus/github-action-helm3@v3
+    - name: update minor appversion value with buildId in Chart.yaml
+      run: |
+        sed -i "" "s/\(appVersion: \)[0-9.]*/\11.0.${{ github.run_id }}/g" ./chart/Chart.yaml 
+        cat ./chart/Chart.yaml
+    - name: 'Deploy'
+      uses: 'deliverybot/helm@v1'
       with:
-        exec: helm upgrade eam-web-new ./chart --install -f ./chart/values.yaml -n default --atomic --wait
-        kubeconfig: '${{ secrets.KUBE_CONFIG_DATA }}'
-        overrule_existing_kubeconfig: "true"
+        release: 'eam-web-new'
+        namespace: 'default'
+        chart: './chart'
+        values: |
+          build_id: '${{ github.run_id }}'
+        atomic: true
+        value-files: >-
+          [
+            "values.yaml"
+          ]
+      env:
+        KUBECONFIG_FILE: '${{ secrets.KUBE_CONFIG_DATA }}'
