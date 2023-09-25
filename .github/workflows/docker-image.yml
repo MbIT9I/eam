@@ -18,3 +18,15 @@ jobs:
         docker login --username MbIT9I --password ${{ secrets.GHCR_TOKEN }} ghcr.io 
         docker build . --file Dockerfile --tag ghcr.io/mbit9i/eam_app:latest
         docker push ghcr.io/mbit9i/eam_app:latest
+
+  deploy:
+
+    runs-on: self-hosted
+    needs: build
+    steps:
+    - uses: actions/checkout@v3
+    - name: Deploy to Kubernetes via helm
+      run: |
+        # add credential to k8s from secrets.KUBE_CONFIG_DATA
+        # echo ${{ secrets.KUBE_CONFIG_DATA }} | base64 -d > ./config
+        helm upgrade eam-web-new ./chart --install -f ./chart/values.yaml -n default --atomic --wait
