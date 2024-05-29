@@ -83,6 +83,8 @@ export default {
 .v-card-title {
   background-color: rgba(var(--v-theme-secondary-darken-1));
   .text-h5 {
+      font-size: large;
+      font-weight: 700;
       text-transform: uppercase !important;
   }
 }
