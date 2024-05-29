@@ -47,8 +47,12 @@ export default {
   },
   data () {
     return {
-      serviceApplications: {},
-      headers: [
+      serviceApplications: {}
+    }
+  },
+  computed: {
+    headers() { 
+      return [
         { title: this.$t('number'), key: 'id' },
         { title: this.$t('created-at'), key: 'createdAt' },
         { title: this.$t('status'), key: 'status' },

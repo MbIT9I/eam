@@ -67,13 +67,17 @@ export default {
   },
   data () {
     return {
-        accessories: {},
-        headers: [
-            { title: () => this.$t('included'), key: 'isInstalled' },
-            { title: () => this.$t('type'), key: 'typeName' },
-            { title: () => this.$t('name'), key: 'name' },
-            { title: () => this.$t('description'), key: 'description' },
-        ]
+        accessories: {}
+    }
+  },
+  computed: {
+    headers() {
+      return [
+        { title: this.$t('included'), key: 'isInstalled' },
+        { title: this.$t('type'), key: 'typeName' },
+        { title: this.$t('name'), key: 'name' },
+        { title: this.$t('description'), key: 'description' },
+      ]
     }
   }
 }
