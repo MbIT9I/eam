@@ -13,7 +13,7 @@ ingress:
 image:
   repository: ghcr.io/mbit9i/eam_app
   tag: latest
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   pullSecret: github-reader
 service:
   replicas: 1
