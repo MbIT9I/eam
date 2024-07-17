@@ -25,7 +25,10 @@
           <v-list-subheader backgroundcolor="primary">
             <p class="text-white"> {{ $t('title.general') }} </p>
           </v-list-subheader>
-          <v-list-item :title="equipment?.name">
+          <v-list-item> 
+            <v-list-item-title class="equipment-title">
+              {{ equipment?.name }}
+            </v-list-item-title>
             <v-list-item-subtitle  v-if="!!equipment?.description">
               {{ equipment?.description }}
             </v-list-item-subtitle>
@@ -52,7 +55,7 @@
           <v-list-item :title="$t('install-date')">
             <v-list-item-subtitle>
               <v-icon>mdi-calendar</v-icon>
-              {{ equipment?.installDate }}
+              {{ equipment?.installDate === "0001-01-01" ? $t('not-set') : equipment?.installDate }}
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('factory-number')">
@@ -110,11 +113,6 @@
   </v-sheet>
 </template>
 
-<script setup>
-  import { useRoute } from 'vue-router'
-  const route = useRoute()
-</script>
-
 <script>
 import gql from 'graphql-tag'
 
@@ -154,5 +152,11 @@ export default {
   text-transform: uppercase;
   font-size: large;
   font-weight: bold;
+}
+
+.equipment-title {
+  font-size: 1.5rem !important; 
+  font-weight: 700;
+  white-space: normal;
 }
 </style>

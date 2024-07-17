@@ -84,6 +84,16 @@
                     </v-row>
                 </v-form>
             </v-card-actions>
+
+            <v-card-item>
+                <v-alert
+                    v-model="alert.show"
+                    :text="alert.title" 
+                    variant="tonal"
+                    type="success" 
+                    closable>
+                </v-alert>
+            </v-card-item>
         </v-card>
 </template>
 
@@ -117,7 +127,8 @@ export default {
                 v => !!v || this.$t('message-is-required'),
             ],
             uploadedFiles: [],
-            loading: false
+            loading: false,
+            alert: { show: false, title: '' }
         }
     },
     methods: {
@@ -164,7 +175,11 @@ export default {
             });
 
             finishLoading();
-            clearFields();
+            this.showModalForm(this.$t('support-request-sent-text'));
+            this.clearFields();
+        },
+        showModalForm(title) {
+            this.alert = { show: true, title }
         },
         clearFields() {
             this.name = ''

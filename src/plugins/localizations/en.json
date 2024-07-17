@@ -66,5 +66,7 @@
   "phone-must-be-10-digits": "Incorret phome number",
   "application-history": "Application history",
   "date": "Date",
-  "event": "Event"
+  "event": "Event",
+  "not-set": "Not set",
+  "support-request-sent-text": "A service request has been created. After a while, a service representative will contact you!"
 }

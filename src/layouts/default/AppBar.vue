@@ -8,13 +8,13 @@
     </v-app-bar-title>
     <them-switcher />
     <language-switcher />
-    <old-eam />
+    <!-- <old-eam /> -->
   </v-app-bar>
 </template>
 
 <script setup>
 import ThemSwitcher from '@/components/ThemSwitcher.vue';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
-import OldEam from '@/components/OldEam.vue';
+// import OldEam from '@/components/OldEam.vue';
 
 </script>
