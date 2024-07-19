@@ -26,10 +26,10 @@
             <p class="text-white"> {{ $t('title.general') }} </p>
           </v-list-subheader>
           <v-list-item> 
-            <v-list-item-title class="equipment-title">
+            <v-list-item-title class="equipment-title wrapped-text">
               {{ equipment?.name }}
             </v-list-item-title>
-            <v-list-item-subtitle  v-if="!!equipment?.description">
+            <v-list-item-subtitle class="equipment-subtitle wrapped-text" v-if="!!equipment?.description">
               {{ equipment?.description }}
             </v-list-item-subtitle>
           </v-list-item>
@@ -38,16 +38,16 @@
       <v-sheet class="pt-5">
         <v-list  lines="one">
           <v-list-subheader backgroundcolor="primary">
-            <p class="text-white"> {{ $t('title.equipment-info') }} </p>
+            <p class="text-white">{{ $t('title.equipment-info') }}</p>
           </v-list-subheader>
           <v-list-item :title="$t('type')">
-            <v-list-item-subtitle>
+            <v-list-item-subtitle class="wrapped-text">
               <v-icon>mdi-account</v-icon>
               {{ equipment?.typeName }}
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('model-name')" >
-            <v-list-item-subtitle>
+            <v-list-item-subtitle class="wrapped-text">
               <v-icon>mdi-account</v-icon>
               {{ equipment?.modelName }}
             </v-list-item-subtitle>
@@ -65,13 +65,13 @@
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item v-if="!!equipment?.manufacturerOrganizationName" :title="$t('manufacturer-name')">
-            <v-list-item-subtitle>
+            <v-list-item-subtitle class="wrapped-text">
               <v-icon>mdi-account</v-icon>
               {{ equipment?.manufacturerOrganizationName }}
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('owner-name')">
-            <v-list-item-subtitle>
+            <v-list-item-subtitle class="wrapped-text">
               <v-icon>mdi-account</v-icon>
               {{ equipment?.ownerOrganizationName }}
             </v-list-item-subtitle>
@@ -157,6 +157,14 @@ export default {
 .equipment-title {
   font-size: 1.5rem !important; 
   font-weight: 700;
+}
+.equipment-subtitle {
+  font-size: 1rem !important; 
+  font-weight: 400;
+  padding-top: 5px;
+}
+.wrapped-text {
   white-space: normal;
+  display: flex;
 }
 </style>

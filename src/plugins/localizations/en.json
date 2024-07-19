@@ -68,5 +68,6 @@
   "date": "Date",
   "event": "Event",
   "not-set": "Not set",
-  "support-request-sent-text": "A service request has been created. After a while, a service representative will contact you!"
+  "support-request-sent-text": "A service request has been created. After a while, a service representative will contact you!",
+  "useful-links": "Useful links"
 }

@@ -3,15 +3,17 @@
     <support-form v-if="!!equipmentCode " :equipmentCode="equipmentCode" />
     <support-applications v-if="!!equipmentCode " :equipmentCode="equipmentCode" />
     <!-- <accessories v-if="!!equipmentCode " :equipmentCode="equipmentCode" /> -->
+    <useful-links v-if="!!equipmentId" :equipmentId="equipmentId" />
 </template>
 
 <script setup>
 import EquipmentItem from '@/components/EquipmentItem.vue';
 import SupportForm from '@/components/SupportForm.vue';
 import SupportApplications from '@/components/SupportApplications.vue';
+import UsefulLinks from '@/components/UsefulLinks.vue';
 // import Accessories from '@/components/Accessories.vue';
-import { useRoute } from 'vue-router';
-const route = useRoute();
+// import { useRoute } from 'vue-router';
+// const route = useRoute();
 </script>
 
 <script>
@@ -21,7 +23,8 @@ export default {
         EquipmentItem,
         SupportForm,
         SupportApplications,
-        // Accessories
+        // Accessories,
+        UsefulLinks
     },
     computed: {
         equipmentId: {
