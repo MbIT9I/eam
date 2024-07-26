@@ -69,5 +69,9 @@
   "event": "Event",
   "not-set": "Not set",
   "support-request-sent-text": "A service request has been created. After a while, a service representative will contact you!",
-  "useful-links": "Useful links"
+  "useful-links": "Useful links",
+  "equipment-attachments": "Additional files",
+  "typeName": "File type",
+  "download": "Download",
+  "fileName": "File name"
 }

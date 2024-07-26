@@ -1,9 +1,11 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <equipment-item v-if="!!equipmentId" :equipmentId="equipmentId" />
     <support-form v-if="!!equipmentCode " :equipmentCode="equipmentCode" />
     <support-applications v-if="false && !!equipmentCode " :equipmentCode="equipmentCode" />
     <!-- <accessories v-if="!!equipmentCode " :equipmentCode="equipmentCode" /> -->
     <useful-links v-if="!!equipmentId" :equipmentId="equipmentId" />
+    <attachments v-if="!!equipmentId" :equipmentId="equipmentId" />
 </template>
 
 <script setup>
@@ -11,6 +13,7 @@ import EquipmentItem from '@/components/EquipmentItem.vue';
 import SupportForm from '@/components/SupportForm.vue';
 import SupportApplications from '@/components/SupportApplications.vue';
 import UsefulLinks from '@/components/UsefulLinks.vue';
+import Attachments from '@/components/Attachments.vue';
 // import Accessories from '@/components/Accessories.vue';
 // import { useRoute } from 'vue-router';
 // const route = useRoute();
@@ -24,7 +27,8 @@ export default {
         SupportForm,
         SupportApplications,
         // Accessories,
-        UsefulLinks
+        UsefulLinks,
+        Attachments
     },
     computed: {
         equipmentId: {
