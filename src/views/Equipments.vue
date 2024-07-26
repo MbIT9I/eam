@@ -1,7 +1,7 @@
 <template>
     <equipment-item v-if="!!equipmentId" :equipmentId="equipmentId" />
     <support-form v-if="!!equipmentCode " :equipmentCode="equipmentCode" />
-    <support-applications v-if="!!equipmentCode " :equipmentCode="equipmentCode" />
+    <support-applications v-if="false && !!equipmentCode " :equipmentCode="equipmentCode" />
     <!-- <accessories v-if="!!equipmentCode " :equipmentCode="equipmentCode" /> -->
     <useful-links v-if="!!equipmentId" :equipmentId="equipmentId" />
 </template>

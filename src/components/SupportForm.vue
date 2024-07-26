@@ -8,28 +8,27 @@
             <v-card-actions class="pt-2">
                 <v-form :disabled="loading" class="w-100">
                     <v-row>
-                        <v-col cols="12" md="4">
+                        <v-col cols="12" md="6">
                             <v-text-field ref="name"
                                 v-model="name" aria-required="true"
-                                :ref="name"
                                 :rules="nameRules"
                                 :label="$t('name')"
+                                type="name" id="name"
                                 required
                             ></v-text-field>
                         </v-col>
-                        <v-col cols="12" md="4">
+                        <v-col cols="12" md="6">
                             <v-text-field ref="phone"
                                 v-model="phone"
-                                :ref="phone"
                                 :rules="phoneRules"
                                 :label="$t('phone')"
                                 mask="+## ### ### ## ##"
                                 prefix="+38"
-                                type="tel" id="tel"
+                                type="phone" id="phone"
                                 required
                             ></v-text-field>
                         </v-col>
-                        <v-col cols="12" md="4">
+                        <!-- <v-col  cols="12" md="4">
                             <v-text-field ref="position"
                                 v-model="position"
                                 :ref="position"
@@ -37,11 +36,10 @@
                                 :label="$t('position')"
                                 required
                             ></v-text-field>
-                        </v-col>
+                        </v-col> -->
                         <v-col cols="12">
                             <v-textarea ref="message"
                                 v-model="message"
-                                :ref="message"
                                 :rules="messageRules"
                                 :label="$t('message')"
                                 required
