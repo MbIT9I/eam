@@ -92,7 +92,9 @@
           <v-list-item :title="$t('phone')">
             <v-list-item-subtitle>
               <v-icon>mdi-phone</v-icon>
-              {{ serviceDepartmentInfo?.phone }}
+                <a :href="`tel:${serviceDepartmentInfo?.phone}`">
+                  {{ serviceDepartmentInfo?.phone }}
+                </a>
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('address')">
