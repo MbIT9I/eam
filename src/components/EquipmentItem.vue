@@ -90,28 +90,28 @@
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('phone')">
-            <v-list-item-subtitle>
+            <v-list-item-action>
+              <v-icon>mdi-phone</v-icon>
               <a :href="`tel:${trimPhone(serviceDepartmentInfo?.phone)}`" target="_blank">
-                <v-icon>mdi-phone</v-icon>
                 {{ serviceDepartmentInfo?.phone }}
               </a>
-            </v-list-item-subtitle>
+            </v-list-item-action>
           </v-list-item>
           <v-list-item :title="$t('address')">
-            <v-list-item-subtitle>
+            <v-list-item-action>
+              <v-icon>mdi-map-marker</v-icon>
               <a :href="`https://maps.app.goo.gl/vYJ9gMTUNPp7JgQd7`" target="_blank">
-                <v-icon>mdi-map-marker</v-icon>
                 {{ serviceDepartmentInfo?.address }}
               </a>
-            </v-list-item-subtitle>
+            </v-list-item-action>
           </v-list-item>
           <v-list-item :title="$t('url')">
-            <v-list-item-subtitle>
+            <v-list-item-action>
+              <v-icon>mdi-link</v-icon>
               <a :href="serviceDepartmentInfo?.url" target="_blank">
-                <v-icon>mdi-link</v-icon>
                 {{ serviceDepartmentInfo?.url }}
               </a>
-            </v-list-item-subtitle>
+            </v-list-item-action>
           </v-list-item>
         </v-list>
       </v-sheet>
@@ -152,7 +152,7 @@ export default {
   methods: {
     // Define your methods
     trimPhone(phoneNumber) {
-      return phoneNumber.replaceAll(' ','').replaceAll('(','').replaceAll(')','').replaceAll('-','');
+      return phoneNumber?.replaceAll(' ','').replaceAll('(','').replaceAll(')','').replaceAll('-','');
     }
   }
 }
@@ -178,5 +178,20 @@ export default {
 .wrapped-text {
   white-space: normal;
   display: flex;
+}
+.v-list-item-subtitle {
+  font-size: 1rem;
+}
+.v-list-item-action {
+  opacity: var(--v-medium-emphasis-opacity);
+  a {
+    color: var(--v-text-color);
+  }
+  a:hover {
+    color: var(--v-primary);
+  }
+  a:visited {
+    color: var(--v-primary);
+  }
 }
 </style>
