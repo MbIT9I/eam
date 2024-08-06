@@ -92,7 +92,7 @@
           <v-list-item :title="$t('phone')">
             <v-list-item-subtitle>
               <v-icon>mdi-phone</v-icon>
-                <a :href="`tel:${trimPhone(serviceDepartmentInfo?.phone)}`">
+                <a :href="`tel:${trimPhone(serviceDepartmentInfo?.phone)}`" target="_blank">
                   {{ serviceDepartmentInfo?.phone }}
                 </a>
             </v-list-item-subtitle>
@@ -100,7 +100,7 @@
           <v-list-item :title="$t('address')">
             <v-list-item-subtitle>
               <v-icon>mdi-map-marker</v-icon>
-                <a :href="`https://maps.app.goo.gl/vYJ9gMTUNPp7JgQd7`">
+                <a :href="`https://maps.app.goo.gl/vYJ9gMTUNPp7JgQd7`" target="_blank">
                   {{ serviceDepartmentInfo?.address }}
                 </a>
             </v-list-item-subtitle>
@@ -108,7 +108,7 @@
           <v-list-item :title="$t('url')">
             <v-list-item-subtitle>
               <v-icon>mdi-link</v-icon>
-              <a :href="serviceDepartmentInfo?.url">{{ serviceDepartmentInfo?.url }}</a>
+              <a :href="serviceDepartmentInfo?.url" target="_blank">{{ serviceDepartmentInfo?.url }}</a>
             </v-list-item-subtitle>
           </v-list-item>
         </v-list>
