@@ -91,24 +91,26 @@
           </v-list-item>
           <v-list-item :title="$t('phone')">
             <v-list-item-subtitle>
-              <v-icon>mdi-phone</v-icon>
-                <a :href="`tel:${trimPhone(serviceDepartmentInfo?.phone)}`" target="_blank">
-                  {{ serviceDepartmentInfo?.phone }}
-                </a>
+              <a :href="`tel:${trimPhone(serviceDepartmentInfo?.phone)}`" target="_blank">
+                <v-icon>mdi-phone</v-icon>
+                {{ serviceDepartmentInfo?.phone }}
+              </a>
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('address')">
             <v-list-item-subtitle>
-              <v-icon>mdi-map-marker</v-icon>
-                <a :href="`https://maps.app.goo.gl/vYJ9gMTUNPp7JgQd7`" target="_blank">
-                  {{ serviceDepartmentInfo?.address }}
-                </a>
+              <a :href="`https://maps.app.goo.gl/vYJ9gMTUNPp7JgQd7`" target="_blank">
+                <v-icon>mdi-map-marker</v-icon>
+                {{ serviceDepartmentInfo?.address }}
+              </a>
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('url')">
             <v-list-item-subtitle>
-              <v-icon>mdi-link</v-icon>
-              <a :href="serviceDepartmentInfo?.url" target="_blank">{{ serviceDepartmentInfo?.url }}</a>
+              <a :href="serviceDepartmentInfo?.url" target="_blank">
+                <v-icon>mdi-link</v-icon>
+                {{ serviceDepartmentInfo?.url }}
+              </a>
             </v-list-item-subtitle>
           </v-list-item>
         </v-list>
