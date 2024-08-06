@@ -92,12 +92,7 @@
           <v-list-item :title="$t('phone')">
             <v-list-item-subtitle>
               <v-icon>mdi-phone</v-icon>
-                <a :href="`tel:${serviceDepartmentInfo?.phone
-                  .replace(' ','')
-                  .replace('(','')
-                  .replace(')','')
-                  .replace('+','')
-                  .replace('-','')}`">
+                <a :href="`tel:${trimPhone(serviceDepartmentInfo?.phone)}`">
                   {{ serviceDepartmentInfo?.phone }}
                 </a>
             </v-list-item-subtitle>
@@ -150,6 +145,12 @@ export default {
       // Initialize your apollo data
       serviceDepartmentInfo: {},
       equipment: {}
+    }
+  },
+  methods: {
+    // Define your methods
+    trimPhone(phoneNumber) {
+      return phoneNumber.replaceAll(' ','').replaceAll('(','').replaceAll(')','').replaceAll('+','').replaceAll('-','');
     }
   }
 }
