@@ -100,7 +100,9 @@
           <v-list-item :title="$t('address')">
             <v-list-item-subtitle>
               <v-icon>mdi-map-marker</v-icon>
-              {{ serviceDepartmentInfo?.address }}
+                <a :href="`https://maps.app.goo.gl/vYJ9gMTUNPp7JgQd7`">
+                  {{ serviceDepartmentInfo?.address }}
+                </a>
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('url')">
