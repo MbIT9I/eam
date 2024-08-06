@@ -150,7 +150,7 @@ export default {
   methods: {
     // Define your methods
     trimPhone(phoneNumber) {
-      return phoneNumber.replaceAll(' ','').replaceAll('(','').replaceAll(')','').replaceAll('+','').replaceAll('-','');
+      return phoneNumber.replaceAll(' ','').replaceAll('(','').replaceAll(')','').replaceAll('-','');
     }
   }
 }
