@@ -181,9 +181,13 @@ export default {
 }
 .v-list-item-subtitle {
   font-size: 1rem;
+  display: flex;
+  align-items: center;
 }
 .v-list-item-action {
   opacity: var(--v-medium-emphasis-opacity);
+  display: flex;
+  align-items: center;
   a {
     color: var(--v-text-color);
   }
