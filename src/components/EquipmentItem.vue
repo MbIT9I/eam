@@ -92,7 +92,12 @@
           <v-list-item :title="$t('phone')">
             <v-list-item-subtitle>
               <v-icon>mdi-phone</v-icon>
-                <a :href="`tel:${serviceDepartmentInfo?.phone.replace(' ','').replace('(','').replace(')','').replace('+','')}`">
+                <a :href="`tel:${serviceDepartmentInfo?.phone
+                  .replace(' ','')
+                  .replace('(','')
+                  .replace(')','')
+                  .replace('+','')
+                  .replace('-','')}`">
                   {{ serviceDepartmentInfo?.phone }}
                 </a>
             </v-list-item-subtitle>
