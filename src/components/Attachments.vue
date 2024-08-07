@@ -17,7 +17,7 @@
                 </template>
             </v-data-table> -->
             <v-sheet class="d-flex flex-column w-100" >
-              <v-sheet class="d-flex align-center justify-space-between attachment" 
+              <v-sheet class="d-flex py-2 px-2 align-center justify-space-between attachment" 
                 v-for="attachment in attachments" :key="attachment.id">
                 <span style="max-width: 90%;">{{ attachment.fileName }}</span>
                 <v-icon  @click="downloadFile(attachment.id)">mdi-download</v-icon>
@@ -94,8 +94,16 @@ export default {
       text-transform: uppercase !important;
   }
 }
-.attachment:hover {
-  cursor: pointer;
-  background-color: rgba(var(--v-theme-secondary-darken-1),0.1);
+.attachment
+{
+  border-bottom-style: solid;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  border-bottom-width: 0.5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  :hover {
+    cursor: pointer;
+    background-color: rgba(var(--v-theme-secondary-darken-1),0.1);
+  }
 }
 </style>
