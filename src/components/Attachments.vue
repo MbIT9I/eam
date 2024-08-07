@@ -16,12 +16,12 @@
                     <v-icon @click="downloadFile(item.value)">mdi-download</v-icon>
                 </template>
             </v-data-table> -->
-            <v-list class="d-flex w-100">
-              <v-list-item-title class="d-flex justify-space-between w-100" v-for="attachment in attachments" :key="attachment.id">
-                  <p>{{ attachment.fileName }}</p>
-                  <v-icon @click="downloadFile(attachment.id)">mdi-download</v-icon>
-              </v-list-item-title>
-            </v-list>
+            <v-sheet class="d-flex flex-column w-100" >
+              <v-sheet class="d-flex align-center justify-space-between attachment" v-for="attachment in attachments" :key="attachment.id">
+                {{ attachment.fileName }}
+                <v-icon  @click="downloadFile(attachment.id)">mdi-download</v-icon>
+              </v-sheet>
+            </v-sheet>
         </v-card-actions>
     </v-card>
 </template>
@@ -93,13 +93,8 @@ export default {
       text-transform: uppercase !important;
   }
 }
-.v-list-item-title {
-  border-bottom-style: solid;
-  border-bottom-color: rgba(0, 0, 0, 0.1);
-  border-bottom-width: 1px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  padding-bottom: 5px;
-  padding-inline: 10px;
+.attachment:hover {
+  cursor: pointer;
+  background-color: rgba(var(--v-theme-secondary-darken-1),0.1);
 }
 </style>
