@@ -17,8 +17,9 @@
                 </template>
             </v-data-table> -->
             <v-sheet class="d-flex flex-column w-100" >
-              <v-sheet class="d-flex align-center justify-space-between attachment" v-for="attachment in attachments" :key="attachment.id">
-                {{ attachment.fileName }}
+              <v-sheet class="d-flex align-center justify-space-between attachment" 
+                v-for="attachment in attachments" :key="attachment.id">
+                <span style="max-width: 90%;">{{ attachment.fileName }}</span>
                 <v-icon  @click="downloadFile(attachment.id)">mdi-download</v-icon>
               </v-sheet>
             </v-sheet>
