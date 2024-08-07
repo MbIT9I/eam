@@ -8,14 +8,20 @@
             </p>
         </v-card-title>
         <v-card-actions class="pt-2">
-            <v-data-table class="w-100"
+            <!-- <v-data-table class="w-100"
                 :headers="headers"
                 :items="attachments"
                 key="id">
                 <template v-slot:item.id="{ item }">
                     <v-icon @click="downloadFile(item.value)">mdi-download</v-icon>
                 </template>
-            </v-data-table>
+            </v-data-table> -->
+            <v-list class="d-flex w-100">
+              <v-list-item-title class="d-flex justify-space-between w-100" v-for="attachment in attachments" :key="attachment.id">
+                  <p>{{ attachment.fileName }}</p>
+                  <v-icon @click="downloadFile(attachment.id)">mdi-download</v-icon>
+              </v-list-item-title>
+            </v-list>
         </v-card-actions>
     </v-card>
 </template>
@@ -48,7 +54,7 @@ export default {
   computed: {
     headers() { 
       return [
-        { title: this.$t('typeName'), key: 'typeName' },
+        // { title: this.$t('typeName'), key: 'typeName' },
         { title: this.$t('fileName'), key: 'fileName' },
         { title: this.$t('download'), key: 'id' },
       ]
@@ -86,5 +92,14 @@ export default {
       font-weight: 700;
       text-transform: uppercase !important;
   }
+}
+.v-list-item-title {
+  border-bottom-style: solid;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  border-bottom-width: 1px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-bottom: 5px;
+  padding-inline: 10px;
 }
 </style>
