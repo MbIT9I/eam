@@ -44,6 +44,14 @@ export default {
               return { equipmentId: this.equipmentId }
           },
           update: data => data._eamequipment.equipmentData.equipmentCode,
+          // if equipmentCode is empty redirect to 404 page
+          result({ data }) {
+            console.log(data);
+            if (!data._eamequipment.equipmentData.equipmentCode) {
+            this.$router.push({ name: '404' });
+            }
+          }
+
       }
     },
     data () {

@@ -12,6 +12,11 @@ const routes = [
         component: () => import('@/views/Home.vue'),
       },
       {
+        path: '404',
+        name: '404',
+        component: () => import('@/views/Error404.vue'),
+      },
+      {
         path: '/:equipmentid',
         // redirect to /equipment-data/:equipmentid
         redirect: to => {

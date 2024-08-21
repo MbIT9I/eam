@@ -9,7 +9,7 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import {
   VDataTable
-} from "vuetify/labs/VDataTable";
+} from "vuetify/components/VDataTable";
 // Composables
 import { createVuetify } from 'vuetify'
 
