@@ -39,7 +39,7 @@
   "phone-must-be-valid": "Телефон має бути дійсним",
   "message-is-required": "Необхідне повідомлення",
   "something-went-wrong": "Щось пішло не так",
-  "support-request": "Запит у службу підтримки",
+  "support-request": "Запит до сервісного центру",
   "types": {
     "CREATION": "Створена",
     "DISPATCHER": "Диспетчер",
