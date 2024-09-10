@@ -25,7 +25,7 @@
           <v-list-subheader backgroundcolor="primary">
             <p class="text-white"> {{ $t('title.general') }} </p>
           </v-list-subheader>
-          <v-list-item> 
+          <v-list-item>
             <v-list-item-title class="equipment-title wrapped-text">
               {{ equipment?.name }}
             </v-list-item-title>
@@ -108,7 +108,7 @@
           <v-list-item :title="$t('url')">
             <v-list-item-action>
               <v-icon>mdi-link</v-icon>
-              <a :href="serviceDepartmentInfo?.url" target="_blank">
+              <a @click="logOpenSite" :href="serviceDepartmentInfo?.url" target="_blank">
                 {{ serviceDepartmentInfo?.url }}
               </a>
             </v-list-item-action>
@@ -121,7 +121,8 @@
 
 <script>
 import gql from 'graphql-tag'
-
+import { useAppStore } from '@/store/app';
+const store = useAppStore();
 export default {
   props: {
     equipmentId: {
@@ -153,6 +154,9 @@ export default {
     // Define your methods
     trimPhone(phoneNumber) {
       return phoneNumber?.replaceAll(' ','').replaceAll('(','').replaceAll(')','').replaceAll('-','');
+    },
+    logOpenSite() {
+      store.publishLog(this.equipmentId, 3);
     }
   }
 }
@@ -167,11 +171,11 @@ export default {
 }
 
 .equipment-title {
-  font-size: 1.5rem !important; 
+  font-size: 1.5rem !important;
   font-weight: 700;
 }
 .equipment-subtitle {
-  font-size: 1rem !important; 
+  font-size: 1rem !important;
   font-weight: 400;
   padding-top: 5px;
 }

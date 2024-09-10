@@ -11,7 +11,7 @@
                 <v-list-item v-for="link in usefulLinks" :key="link.id">
                     <v-list-item-content>
                         <v-list-item-title>
-                            <a :href="link.url" target="_blank">{{ link.name }}</a>
+                            <a :href="link.url" @click="log(link.name)" target="_blank">{{ link.name }}</a>
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
@@ -22,6 +22,8 @@
 
 <script>
 import gql from 'graphql-tag'
+import { useAppStore } from '@/store/app';
+const store = useAppStore();
 
 export default {
   props: {
@@ -44,6 +46,11 @@ export default {
       usefulLinks: []
     }
   },
+  methods: {
+    log (data) {
+      store.publishLog(this.equipmentId, 1, data);
+    }
+  }
 }
 
 </script>

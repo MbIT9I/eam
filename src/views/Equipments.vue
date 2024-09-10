@@ -14,6 +14,8 @@ import SupportForm from '@/components/SupportForm.vue';
 import SupportApplications from '@/components/SupportApplications.vue';
 import UsefulLinks from '@/components/UsefulLinks.vue';
 import Attachments from '@/components/Attachments.vue';
+
+import { useAppStore } from '@/store/app';
 // import Accessories from '@/components/Accessories.vue';
 // import { useRoute } from 'vue-router';
 // const route = useRoute();
@@ -21,6 +23,8 @@ import Attachments from '@/components/Attachments.vue';
 
 <script>
 import gql from 'graphql-tag'
+const store = useAppStore();
+
 export default {
     components: {
         EquipmentItem,
@@ -58,6 +62,9 @@ export default {
         return {
             equipmentCode: '',
         }
+    },
+    mounted() {
+      store.publishLog(this.equipmentId, 0, 'Equipment Page');
     }
 }
 </script>
