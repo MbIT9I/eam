@@ -21,7 +21,7 @@ export default {
 
     const logout = () => {
       sessionStorage.removeItem('accessToken');
-      router.push('/login');
+      router.push('/');
     };
 
     return {

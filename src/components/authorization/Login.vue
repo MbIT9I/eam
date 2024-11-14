@@ -95,10 +95,9 @@ export default {
           //if(this.loginData.rememberMe) {
           sessionStorage.setItem('accessToken', data.AccessToken);
           //}
-          console.log(this.$router)
-          this.$router.push('/');
+
+          this.$router.push(this.$route.query.redirect || '/');
         } else {
-          console.log(data)
           this.error = data.FailReason || 'Невірні дані для входу';
         }
       } catch (err) {

@@ -6,8 +6,8 @@
         <v-img src="https://harwind.com.ua/assets/images/logo-uk.svg" max-width="200"/>
       </a>
     </v-app-bar-title>
-    <user-menu />
     <user />
+    <them-switcher />
     <language-switcher />
     <!-- <old-eam /> -->
   </v-app-bar>
