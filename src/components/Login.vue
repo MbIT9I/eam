@@ -36,6 +36,7 @@
           label="Запомнить меня"
         />-->
         <v-btn
+          @click="login"
           type="submit"
           class="mt-3"
           :disabled="!valid || isLoading"
@@ -62,7 +63,7 @@ export default {
         login: '',
         password: '',
         rememberMe: true,
-        fingerprint: 'ed3b5d8c811f85417ecaae07505e6cfc', // Статичный fingerprint
+        fingerprint: process.env.VUE_APP_FINGERPRINT
       },
       isLoading: false,
       error: null,
@@ -90,12 +91,10 @@ export default {
         });
 
         const data = await response.json();
-
         if (data.Success) {
           //if(this.loginData.rememberMe) {
           sessionStorage.setItem('accessToken', data.AccessToken);
           //}
-
           this.$router.push(this.$route.query.redirect || '/');
         } else {
           this.error = data.FailReason || 'Невірні дані для входу';
