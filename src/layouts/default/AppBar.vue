@@ -6,7 +6,8 @@
         <v-img src="https://harwind.com.ua/assets/images/logo-uk.svg" max-width="200"/>
       </a>
     </v-app-bar-title>
-    <them-switcher />
+    <user-menu />
+    <user />
     <language-switcher />
     <!-- <old-eam /> -->
   </v-app-bar>
@@ -15,6 +16,7 @@
 <script setup>
 import ThemSwitcher from '@/components/ThemSwitcher.vue';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
+import User from '@/components/User.vue';
 // import OldEam from '@/components/OldEam.vue';
 
 </script>

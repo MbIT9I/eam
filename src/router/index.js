@@ -1,10 +1,15 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
+import Login from '../components/authorization/Login.vue';
+import Logout from '../components/authorization/Logout.vue';
 
 const routes = [
+  { path: '/login', component: Login },
+  { path: '/logout', component: Logout },
   {
     path: '/',
     component: () => import('@/layouts/default/Default.vue'),
+    meta: { requiresAuth: true },
     children: [
       {
         path: '',
@@ -42,5 +47,14 @@ const router = createRouter({
   history: createWebHistory("/eam-web/"),
   routes,
 })
+
+router.beforeEach((to, from, next) => {
+  const token = sessionStorage.getItem('accessToken');
+  if (to.meta.requiresAuth && !token) {
+    next('/login');
+  } else {
+    next();
+  }
+});
 
 export default router
