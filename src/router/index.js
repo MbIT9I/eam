@@ -4,12 +4,16 @@ import Login from '../components/authorization/Login.vue';
 import Logout from '../components/authorization/Logout.vue';
 
 const routes = [
-  { path: '/login', component: Login },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
+    props: true
+  },
   { path: '/logout', component: Logout },
   {
     path: '/',
     component: () => import('@/layouts/default/Default.vue'),
-    meta: { requiresAuth: true },
     children: [
       {
         path: '',
@@ -31,6 +35,7 @@ const routes = [
       },
       {
         path: '/equipment-data/:equipmentid',
+        meta: { requiresAuth: true },
         name: 'Equipment',
         component: () => import(/* webpackChunkName: "home" */ '@/views/Equipments.vue'),
       },
@@ -51,7 +56,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const token = sessionStorage.getItem('accessToken');
   if (to.meta.requiresAuth && !token) {
-    next('/login');
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath },
+    });
   } else {
     next();
   }
