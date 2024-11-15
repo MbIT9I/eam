@@ -46,13 +46,11 @@ jobs:
       run: |
         (Get-Content -Path ./chart/Chart.yaml) | ForEach-Object { $_ -replace '^(appVersion:\s*)[0-9.]*', "`$1'1.0.${env:GITHUB_RUN_ID}'" } | Set-Content -Path ./chart/Chart.yaml
         Get-Content -Path ./chart/Chart.yaml
-    - name: set kube certificate
+    - name: set kube config
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       run: |
-        $env:KUBECONFIG_FILE='${{ secrets.KUBE_CONFIG_DATA }}'
-    # - name: set kube config
-    #   run: |
-    #     echo $env:KUBECONFIG_FILE
-    #     $env:KUBECONFIG=$env:KUBECONFIG_FILE
+        $env:KUBECONFIG="$env:KUBE_CONFIG_DATA"
     - name: set Open Container Initiative for Helm
       run: |
         $env:HELM_EXPERIMENTAL_OCI=1
