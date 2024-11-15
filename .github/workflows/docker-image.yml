@@ -46,9 +46,11 @@ jobs:
       run: |
         (Get-Content -Path ./chart/Chart.yaml) | ForEach-Object { $_ -replace '^(appVersion:\s*)[0-9.]*', "`$1'1.0.${env:GITHUB_RUN_ID}'" } | Set-Content -Path ./chart/Chart.yaml
         Get-Content -Path ./chart/Chart.yaml
+    
     - name: deploy via powershell
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         HELM_EXPERIMENTAL_OCI: 1
       run: |
-        helm upgrade eam-web-new ./chart --install -f ./chart/values.yaml -n default --atomic --wait --set image.tag=1.0.${{ github.run_id }} --debug --kubeconfig $env:KUBE_CONFIG_DATA
+        $env:KUBE_CONFIG_DATA | Out-File -FilePath .kubeconfig -Encoding utf8
+        helm upgrade eam-web-new ./chart --install -f ./chart/values.yaml -n default --atomic --wait --set image.tag=1.0.${{ github.run_id }} --debug --kubeconfig .kubeconfig
