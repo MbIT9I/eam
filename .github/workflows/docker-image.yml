@@ -50,5 +50,4 @@ jobs:
       run: |
         $env:KUBECONFIG_FILE = '${{ secrets.KUBE_CONFIG_DATA }}'
         $env:HELM_EXPERIMENTAL_OCI=1
-        cat $env:KUBECONFIG_FILE | base64 -d > kubeconfig
         helm upgrade eam-web-new ./chart --install -f ./chart/values.yaml -n default --atomic --wait --set image.tag=1.0.${{ github.run_id }}
