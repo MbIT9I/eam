@@ -48,7 +48,7 @@ jobs:
         Get-Content -Path ./chart/Chart.yaml
     - name: set kube certificate
       run: |
-        echo '${{ secrets.KUBE_CONFIG_DATA }}' > $env:KUBECONFIG_FILE
+        $env:KUBECONFIG_FILE='${{ secrets.KUBE_CONFIG_DATA }}'
     # - name: set kube config
     #   run: |
     #     echo $env:KUBECONFIG_FILE
@@ -58,7 +58,7 @@ jobs:
         $env:HELM_EXPERIMENTAL_OCI=1
     - name: show kube config data
       run: |
-        echo $env:KUBECONFIG_FILE
+        Write-Output $env:KUBECONFIG_FILE
     - name: deploy via powershell
       run: |
         helm upgrade eam-web-new ./chart --install -f ./chart/values.yaml -n default --atomic --wait --set image.tag=1.0.${{ github.run_id }}
