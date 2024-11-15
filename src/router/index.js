@@ -33,7 +33,7 @@ const routes = [
       },
       {
         path: '/equipment-data/:equipmentid',
-        meta: { requiresAuth: true },
+        // meta: { requiresAuth: true },
         name: 'Equipment',
         component: () => import(/* webpackChunkName: "home" */ '@/views/Equipments.vue'),
       },

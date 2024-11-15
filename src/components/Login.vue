@@ -63,7 +63,7 @@ export default {
         login: '',
         password: '',
         rememberMe: true,
-        fingerprint: process.env.VUE_APP_FINGERPRINT
+        fingerprint: 'ed3b5d8c811f85417ecaae07505e6cfc', // Статичный fingerprint
       },
       isLoading: false,
       error: null,
