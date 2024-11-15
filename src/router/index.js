@@ -1,7 +1,6 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../components/authorization/Login.vue';
-import Logout from '../components/authorization/Logout.vue';
+import Login from '../components/Login.vue';
 
 const routes = [
   {
@@ -10,7 +9,6 @@ const routes = [
     component: Login,
     props: true
   },
-  { path: '/logout', component: Logout },
   {
     path: '/',
     component: () => import('@/layouts/default/Default.vue'),
@@ -54,8 +52,18 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (to.path !== '/' && to.path.charAt(to.path.length - 1) !== '/') { // добавляем закрывающийся слеш
+    const newPath = to.path + '/';
+
+    next({ path: newPath, query: to.query });
+  }
+
+  if (!to.name) { // Проверяем на отсутсвие страниц в роуте
+    next('404');
+  }
+
   const token = sessionStorage.getItem('accessToken');
-  if (to.meta.requiresAuth && !token) {
+  if (to.meta.requiresAuth && !token) { // проверяем необходимость и наличие авторизации
     next({
       path: '/login',
       query: { redirect: to.fullPath },

@@ -1,5 +1,7 @@
 <template>
-    <v-menu offset-y>
+    <v-menu
+        v-if="userProps"
+        offset-y>
         <template v-slot:activator="{ props }">
             <v-btn
                 v-bind="props"
@@ -24,6 +26,13 @@
             </v-card>
         </div>
     </v-menu>
+    <v-btn
+        v-else
+        text
+        icon="mdi-account-circle"
+        color="grey"
+        class="ml-2"
+        @click="goToLogin"/>
 </template>
 <script setup>
 </script>
@@ -31,31 +40,34 @@
 export default {
     data() {
       return {
-        userProps: {}
+        userProps: null
       }
     },
     methods: {
+      goToLogin() {
+        this.$router.push({ path: '/login', query: { redirect: this.$route.fullPath } })
+      },
       logout() {
-        console.log('fdff')
         sessionStorage.removeItem('accessToken');
-        this.$router.push('/login');
+        location.reload();
       }
     },
     mounted() {
         const token = sessionStorage.getItem('accessToken');
         if (token) {
-        const parts = token.split('.');
+            const parts = token.split('.');
 
-        if (parts.length === 3) {
-            const payload = parts[1];
-            const decodedPayload = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+            if (parts.length === 3) {
+                const payload = parts[1];
+                const decodedPayload = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
 
-            this.userProps = decodedPayload;
-        } else {
-            console.error('Неправильний формат токена');
-        }
-        } else {
-        console.error('Токен не знайдено в sessionStorage');
+                this.userProps = decodedPayload;
+            }/* else {
+                console.error('Неправильний формат токена');
+            }
+            } else {
+                console.error('Токен не знайдено в sessionStorage');
+            }*/
         }
     }
 
