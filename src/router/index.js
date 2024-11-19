@@ -33,9 +33,14 @@ const routes = [
       },
       {
         path: '/equipment-data/:equipmentid',
-        meta: { requiresAuth: true },
         name: 'Equipment',
         component: () => import(/* webpackChunkName: "home" */ '@/views/Equipments.vue'),
+      },
+      {
+        path: '/internl-files/:equipmentid',
+        meta: { requiresAuth: true },
+        name: 'InternlFiles',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/InternlFiles.vue'),
       },
       {
         path: '/service-requests/:applicationId',
@@ -62,7 +67,7 @@ router.beforeEach((to, from, next) => {
     next('404');
   }
 
-  const token = sessionStorage.getItem('accessToken');
+  const token = localStorage.getItem('accessToken');
   if (to.meta.requiresAuth && !token) { // проверяем необходимость и наличие авторизации
     next({
       path: '/login',

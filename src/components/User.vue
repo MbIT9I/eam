@@ -1,6 +1,6 @@
 <template>
     <v-menu
-        v-if="userProps"
+        v-if="currenUserProps"
         offset-y>
         <template v-slot:activator="{ props }">
             <v-btn
@@ -13,7 +13,7 @@
         </template>
         <div>
             <v-card class="white--text py-3 px-3">
-                {{ userProps.nameid }}
+                {{ currenUserProps.nameid }}
                 <v-divider class="my-3"/>
                 <v-btn
                     v-bind="props"
@@ -34,43 +34,25 @@
         class="ml-2"
         @click="goToLogin"/>
 </template>
-<script setup>
-</script>
 <script>
+import { useAccessStore } from '@/store/access'
+const accessStore = useAccessStore()
+
 export default {
-    data() {
-      return {
-        userProps: null
-      }
-    },
     methods: {
       goToLogin() {
         this.$router.push({ path: '/login', query: { redirect: this.$route.fullPath } })
       },
       logout() {
-        sessionStorage.removeItem('accessToken');
+        accessStore.setToken(null);
         location.reload();
       }
     },
-    mounted() {
-        const token = sessionStorage.getItem('accessToken');
-        if (token) {
-            const parts = token.split('.');
-
-            if (parts.length === 3) {
-                const payload = parts[1];
-                const decodedPayload = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
-
-                this.userProps = decodedPayload;
-            }/* else {
-                console.error('Неправильний формат токена');
-            }
-            } else {
-                console.error('Токен не знайдено в sessionStorage');
-            }*/
-        }
-    }
-
+    computed: {
+      currenUserProps() {
+        return accessStore.userProps
+      }
+    },
 }
 
 </script>

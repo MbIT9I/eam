@@ -21,59 +21,64 @@
     </v-sheet>
     <v-sheet class="w-100 w-md-50 d-flex flex-column">
       <v-sheet class="pt-5">
-        <v-list  lines="one">
+        <v-list lines="one">
           <v-list-subheader backgroundcolor="primary">
             <p class="text-white"> {{ $t('title.general') }} </p>
           </v-list-subheader>
           <v-list-item>
             <v-list-item-title class="equipment-title wrapped-text">
-              {{ equipment?.name }}
+              {{ loading.equipment ? $t('loading') : equipment?.name }}
             </v-list-item-title>
             <v-list-item-subtitle class="equipment-subtitle wrapped-text" v-if="!!equipment?.description">
-              {{ equipment?.description }}
+              {{ loading.equipment ? $t('loading') : equipment?.description }}
             </v-list-item-subtitle>
           </v-list-item>
         </v-list>
       </v-sheet>
       <v-sheet class="pt-5">
-        <v-list  lines="one">
+        <v-list lines="one">
           <v-list-subheader backgroundcolor="primary">
             <p class="text-white">{{ $t('title.equipment-info') }}</p>
           </v-list-subheader>
           <v-list-item :title="$t('type')">
             <v-list-item-subtitle class="wrapped-text">
               <v-icon>mdi-account</v-icon>
-              {{ equipment?.typeName }}
+              {{ loading.equipment ? $t('loading') : equipment?.typeName }}
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('model-name')" >
             <v-list-item-subtitle class="wrapped-text">
               <v-icon>mdi-account</v-icon>
-              {{ equipment?.modelName }}
+              {{ loading.equipment ? $t('loading') : equipment?.modelName }}
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('install-date')">
             <v-list-item-subtitle>
               <v-icon>mdi-calendar</v-icon>
+              <template v-if="loading.equipment">
+                {{ $t('loading') }}
+              </template>
+              <template v-else>
               {{ equipment?.installDate === "0001-01-01" ? $t('not-set') : equipment?.installDate }}
+              </template>
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('factory-number')">
             <v-list-item-subtitle>
               <v-icon>mdi-factory</v-icon>
-              {{ equipment?.factoryNumber }}
+              {{ loading.equipment ? $t('loading') : equipment?.factoryNumber }}
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item v-if="!!equipment?.manufacturerOrganizationName" :title="$t('manufacturer-name')">
             <v-list-item-subtitle class="wrapped-text">
               <v-icon>mdi-account</v-icon>
-              {{ equipment?.manufacturerOrganizationName }}
+              {{ loading.equipment ? $t('loading') : equipment?.manufacturerOrganizationName }}
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('owner-name')">
             <v-list-item-subtitle class="wrapped-text">
               <v-icon>mdi-account</v-icon>
-              {{ equipment?.ownerOrganizationName }}
+              {{ loading.equipment ? $t('loading') : equipment?.ownerOrganizationName }}
             </v-list-item-subtitle>
           </v-list-item>
         </v-list>
@@ -85,14 +90,15 @@
           </v-list-subheader>
           <v-list-item :title="$t('name')">
             <v-list-item-subtitle>
-              <v-icon>mdi-account</v-icon>
-              {{ serviceDepartmentInfo?.name }}
+              <v-icon>mdi-account</v-icon><div v-if="loading.serviceDepartmentInfo">{{ $t('loading') }}</div>
+              <span v-else>{{ serviceDepartmentInfo?.name }}</span>
             </v-list-item-subtitle>
           </v-list-item>
           <v-list-item :title="$t('phone')">
             <v-list-item-action>
               <v-icon>mdi-phone</v-icon>
-              <a :href="`tel:${trimPhone(serviceDepartmentInfo?.phone)}`" target="_blank">
+              <div v-if="loading.serviceDepartmentInfo">{{ $t('loading') }}</div>
+              <a v-else :href="`tel:${trimPhone(serviceDepartmentInfo?.phone)}`" target="_blank">
                 {{ serviceDepartmentInfo?.phone }}
               </a>
             </v-list-item-action>
@@ -100,7 +106,8 @@
           <v-list-item :title="$t('address')">
             <v-list-item-action>
               <v-icon>mdi-map-marker</v-icon>
-              <a :href="`https://maps.app.goo.gl/vYJ9gMTUNPp7JgQd7`" target="_blank">
+              <div v-if="loading.serviceDepartmentInfo">{{ $t('loading') }}</div>
+              <a v-else :href="`https://maps.app.goo.gl/vYJ9gMTUNPp7JgQd7`" target="_blank">
                 {{ serviceDepartmentInfo?.address }}
               </a>
             </v-list-item-action>
@@ -108,7 +115,8 @@
           <v-list-item :title="$t('url')">
             <v-list-item-action>
               <v-icon>mdi-link</v-icon>
-              <a @click="logOpenSite" :href="serviceDepartmentInfo?.url" target="_blank">
+              <div v-if="loading.serviceDepartmentInfo">{{ $t('loading') }}</div>
+              <a v-else @click="logOpenSite" :href="serviceDepartmentInfo?.url" target="_blank">
                 {{ serviceDepartmentInfo?.url }}
               </a>
             </v-list-item-action>
@@ -131,23 +139,33 @@ export default {
     }
   },
   apollo: {
-    serviceDepartmentInfo: {
+    getServiceDepartmentInfo: {
       query: gql`query serviceDepartmentInfo { _eamcommon { serviceDepartmentInfo: serviceDepartment { name phone address url } } }`,
-      update: data => data._eamcommon.serviceDepartmentInfo,
+      update(data) {
+        this.serviceDepartmentInfo = data._eamcommon.serviceDepartmentInfo;
+        this.loading.serviceDepartmentInfo = false;
+      }
     },
-    equipment: {
+    getEquipment: {
       query: gql`query equipment ($equipmentId: String) { _eamequipment { equipmentData(equipmentId: $equipmentId) { equipmentId name description factoryNumber installDate modelName typeName manufacturerOrganizationName ownerOrganizationName images } } }`,
-      variables () {
+      variables() {
         return { equipmentId: this.equipmentId }
       },
-      update: data => data._eamequipment.equipmentData,
+      update(data) {
+        this.equipment = data._eamequipment.equipmentData;
+        this.loading.equipment = false;
+      }
     }
   },
   data () {
     return {
       // Initialize your apollo data
       serviceDepartmentInfo: {},
-      equipment: {}
+      equipment: {},
+      loading: {
+        serviceDepartmentInfo: true,
+        equipment: true,
+      }
     }
   },
   methods: {
